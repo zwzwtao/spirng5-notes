@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="mysqlImpl" class="com.odas.dao.UserDaoMysqlImpl"/>
+    <bean id="oracleImpl" class="com.odas.dao.UserDaoOracleImpl"/>
+
+    <bean id="UserServiceImpl" class="com.odas.service.UserServiceImpl">
+        <!-- 基本数据类型，具体的值用的是value 而 ref 是用来引用spring容器中创建好的对象 -->
+        <!-- 之后要controller那里不用更改，直接改这个配置文件就可以实现不同的功能了 -->
+        <property name="userDao" ref="mysqlImpl"/>
+    </bean>
+
+</beans>

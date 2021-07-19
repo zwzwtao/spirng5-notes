@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 第一种，下标赋值 -->
+<!--    <bean id="user" class="com.odas.pojo.User">-->
+<!--        <constructor-arg index="0" value="Odas Tao"/>-->
+<!--    </bean>-->
+
+    <!-- 第二种，通过类型创建，如果两个值类型相同，会按照顺序赋值，不过不推荐使用 -->
+<!--    <bean id="user" class="com.odas.pojo.User">-->
+<!--        <constructor-arg type="java.lang.String" value="Odas Tao"/>-->
+<!--    </bean>-->
+
+    <!-- 第三种，直接通过参数名来设置 -->
+    <bean id="user" class="com.odas.pojo.User">
+        <constructor-arg name="name" value="Odas Tao"/>
+    </bean>
+
+    <!--
+     id : bean 的唯一标识符，也就是相当于我们学习的对象名
+     class : bean 对象所对应的全限定名 : 包名 + 类型
+     name : 也是别名，而且 name 可以同时取多个别名
+     -->
+    <bean id="userT" class="com.odas.pojo.UserT" name="user2 u2 u2t">
+        <property name="name" value="Odas Tao"/>
+    </bean>
+
+    <!-- alias: 可以给bean取别名，如果添加了别名，我们也可以使用别名获取到这个对象，不过有了更强大的name -->
+    <alias name="user" alias="userAlias"/>
+
+</beans>

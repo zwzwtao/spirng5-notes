@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="address" class="com.odas.pojo.Address">
+        <property name="address" value="Anzac Parade"/>
+    </bean>
+
+    <bean id="student" class="com.odas.pojo.Student">
+        <!-- 第一种，普通值注入，value -->
+        <property name="name" value="Odas Tao"/>
+
+        <!-- 第二种，bean注入，ref -->
+        <property name="address" ref="address"/>
+
+        <!-- 第三种，数组注入，array -->
+        <property name="books">
+            <array>
+                <value>红楼梦</value>
+                <value>西游记</value>
+                <value>水浒传</value>
+                <value>三国演义</value>
+            </array>
+        </property>
+
+        <!-- 第四种，List注入，list -->
+        <property name="hobbies">
+            <list>
+                <value>book</value>
+                <value>movie</value>
+                <value>game</value>
+            </list>
+        </property>
+
+        <!-- 第五种，Map注入，map -->
+        <property name="card">
+            <map>
+                <entry key="driving licence" value="123456"/>
+                <entry key="passport" value="E973850283"/>
+            </map>
+        </property>
+
+        <!-- 第六种，Set注入，set -->
+        <property name="games">
+            <set>
+                <value>Call Of Duty</value>
+                <value>Assassin's Creed</value>
+                <value>Overwatch</value>
+            </set>
+        </property>
+
+        <!-- 第六种，null注入，null -->
+        <property name="ps5">
+            <null/>
+        </property>
+
+        <!-- 第七种，Properties注入，props -->
+        <property name="info">
+            <props>
+                <prop key="driver">123456</prop>
+                <prop key="url">102.123.34.12</prop>
+                <prop key="username">root</prop>
+                <prop key="password">password</prop>
+            </props>
+        </property>
+
+    </bean>
+
+</beans>

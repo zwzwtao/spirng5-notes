@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean id="cat" class="com.odas.pojo.Cat"/>
     <bean id="dog" class="com.odas.pojo.Dog"/>
@@ -28,5 +29,11 @@
     <bean id="people1" class="com.odas.pojo.People" autowire="byType">
         <property name="name" value="Odas"/>
     </bean>
+
+    <!--
+        要使用注解需要在命名空间导入context约束xmlns:context="http://www.springframework.org/schema/context"
+        然后使用下面语句配置注解的支持，更好的办法是先写下面语句配置，然后alt+enter
+    -->
+
 
 </beans>

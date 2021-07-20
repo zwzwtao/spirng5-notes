@@ -26,7 +26,7 @@
         但是如果使用 byType，定义的<bean>只能有一个了，也就是说，本来可以对同一个类定义多个beanid，
         但是使用了 byType 就只能一个类一个 bean，否则程序无法判断到底是哪个类
      -->
-    <bean id="people1" class="com.odas.pojo.People" autowire="byType">
+    <bean id="people2" class="com.odas.pojo.People" autowire="byType">
         <property name="name" value="Odas"/>
     </bean>
 

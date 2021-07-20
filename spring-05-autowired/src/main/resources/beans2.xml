@@ -10,7 +10,9 @@
     -->
     <context:annotation-config/>
 
-    <bean id="cat" class="com.odas.pojo.Cat"/>
+    <!-- 这里Cat的bean通过正常的自动装配是找不到的，所以可以使用qualifier来制定具体是哪一个 -->
+    <bean id="cat1" class="com.odas.pojo.Cat"/>
+    <bean id="cat2" class="com.odas.pojo.Cat"/>
     <bean id="dog" class="com.odas.pojo.Dog"/>
     <bean id="people" class="com.odas.pojo.People"/>
 </beans>

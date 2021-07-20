@@ -17,6 +17,18 @@ public class People {
         this.name = name;
     }
 
+    public Cat getCat() {
+        return cat;
+    }
+
+    public Dog getDog() {
+        return dog;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "People{" +

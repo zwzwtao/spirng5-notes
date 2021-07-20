@@ -12,4 +12,21 @@
         <property name="dog" ref="dog"/>
     </bean>
 
+    <!--
+        byName: 会自动在容器上下文中查找，和自己对象 set 方法后面的值对应的 beanid
+        注意 beanid 必须和类中定义的成员名一模一样，包括大小写，如果beanid与类成员名不一致，可以用byType
+     -->
+    <bean id="people1" class="com.odas.pojo.People" autowire="byName">
+        <property name="name" value="Odas"/>
+    </bean>
+
+    <!--
+        byType: 会自动在容器上下文中查找，和自己对象类型相同的 bean
+        但是如果使用 byType，定义的<bean>只能有一个了，也就是说，本来可以对同一个类定义多个beanid，
+        但是使用了 byType 就只能一个类一个 bean，否则程序无法判断到底是哪个类
+     -->
+    <bean id="people1" class="com.odas.pojo.People" autowire="byType">
+        <property name="name" value="Odas"/>
+    </bean>
+
 </beans>

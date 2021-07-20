@@ -6,7 +6,7 @@
 
     <!--
         要使用注解需要在命名空间导入context约束xmlns:context="http://www.springframework.org/schema/context"
-        然后使用下面语句配置注解的支持，更好的办法是先写下面语句配置，然后alt+enter
+        然后使用下面语句配置注解的支持，更好的办法是先写下面语句配置，然后alt+enter，这样就不用手动配置啦
     -->
     <context:annotation-config/>
 

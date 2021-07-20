@@ -4,6 +4,8 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!-- 指定要扫描的包，这个包下的注解就会生效 -->
+    <context:component-scan base-package="com.odas"/>
+    <!-- 如果有上面那句component-scan，那么下面这句注解配置就不用写啦 -->
     <context:annotation-config/>
-
 </beans>

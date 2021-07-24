@@ -27,7 +27,7 @@ public class ProxInvocationHandler implements InvocationHandler {
 
     // 处理代理实例，并返回结果
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        // 反射
+        // 反射得到调用的方法名
         log(method.getName());
 
         // 动态代理的本质，就是使用反射机制实现

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 注册bean -->
+    <bean id="userService" class="com.odas.service.UserServiceImpl"/>
+
+    <bean id="log" class="com.odas.log.Log"/>
+
+    <bean id="afterLog" class="com.odas.log.AfterLog"/>
+
+    <!-- 注意，一定要导入aspectjweaver包 -->
+    <!-- 方式一: 使用原生 Spring API 接口 -->
+    <!-- 配置AOP: 需要导入aop约束 -->
+<!--    <aop:config>-->
+<!--        &lt;!&ndash;-->
+<!--            切入点: expression: 表达式，execution(需要执行的位置! * * * * *)-->
+<!--            expression中的内容不理解没关系，先记住，因为这个内容是固定的-->
+<!--            execution(修饰符  返回值  包名.类名/接口名.方法名(参数列表))注意老师忽略掉修饰符了 自己可以写上修饰符试试-->
+<!--            (..)可以代表所有参数,(*)代表一个参数,(*,String)代表第一个参数为任何值,第二个参数为String类型.-->
+<!--            下面这句话的意思是，"切入点"为com.odas.service.UserServiceImpl类中的所有参数为任意个数的方法-->
+<!--            第一个符号表示返回类型，* 表示所有的类型-->
+<!--        &ndash;&gt;-->
+<!--        <aop:pointcut id="pointcut" expression="execution(* com.odas.service.UserServiceImpl.*(..))"/>-->
+
+<!--        &lt;!&ndash; 执行环绕增加 &ndash;&gt;-->
+<!--        &lt;!&ndash; 如下表示把log这个类执行到上面的pointcut(切入点)上去 &ndash;&gt;-->
+<!--        <aop:advisor advice-ref="log" pointcut-ref="pointcut"/>-->
+<!--        <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>-->
+<!--    </aop:config>-->
+
+
+    <!-- 方式二: 自定义类 -->
+<!--    <bean id="diy" class="com.odas.diy.DiyPointCut"/>-->
+
+<!--    <aop:config>-->
+<!--        &lt;!&ndash; 自定义切面，ref 要引用的类 &ndash;&gt;-->
+<!--        <aop:aspect ref="diy">-->
+<!--            &lt;!&ndash; 切入点 &ndash;&gt;-->
+<!--            <aop:pointcut id="point" expression="execution(* com.odas.service.UserServiceImpl.*(..))"/>-->
+<!--            &lt;!&ndash; 通知 &ndash;&gt;-->
+<!--            <aop:before method="before" pointcut-ref="point"/>-->
+<!--            <aop:after method="after" pointcut-ref="point"/>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
+    <!-- 方式三: 使用注解方式实现aop -->
+    <bean id="annotationPointCut" class="com.odas.diy.AnnotationPointCut"/>
+    <!-- 开启注解支持 JDK(默认 proxy-target-class="false") cglib(proxy-target-class="true")-->
+    <aop:aspectj-autoproxy proxy-target-class="false"/>
+
+</beans>

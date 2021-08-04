@@ -6,7 +6,7 @@
 
     <select id="selectUser" resultType="user">
         select *
-        from mybatis.user;
+        from spring.student;
     </select>
 
 </mapper>

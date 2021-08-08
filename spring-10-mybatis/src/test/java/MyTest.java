@@ -1,22 +1,16 @@
 import com.odas.mapper.UserMapper;
 import com.odas.pojo.User;
-import com.odas.utils.MybatisUtils;
-import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
-
-import java.util.List;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MyTest {
     @Test
     public void test() {
-        SqlSession sqlSession = MybatisUtils.getSqlSession();
-        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-
-        List<User> userList = mapper.selectUser();
-        for (User user : userList) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-dao.xml");
+        UserMapper userMapper = context.getBean("userMapper", UserMapper.class);
+        for (User user : userMapper.selectUser()) {
             System.out.println(user);
         }
-
-        sqlSession.close();
     }
 }

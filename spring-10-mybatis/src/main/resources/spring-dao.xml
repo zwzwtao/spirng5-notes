@@ -31,4 +31,9 @@
         <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
 
+    <!-- 将bean id为sqlSession的类注入sqlSession -->
+    <bean id="userMapper" class="com.odas.mapper.UserMapperImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
 </beans>

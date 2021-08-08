@@ -6,7 +6,7 @@
 
     <select id="selectUser" resultType="user">
         select *
-        from spring.student;
+        from spring.user;
     </select>
 
 </mapper>

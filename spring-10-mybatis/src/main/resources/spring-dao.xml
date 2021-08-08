@@ -3,6 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!-- 这个spring-dao.xml只需要专注于注册数据库的bean就可以了，之后import到applicationContext.xml里 -->
+
     <!--
         DataSource: 使用Spring的数据源替换MyBatis的配置 c3p0 dpcp druid
         我们这里使用spring提供的JDBC: org.springframework.jdbc.datasource.DriverManagerDataSource
@@ -27,13 +29,8 @@
 
     <!-- sqlSessionTemplate就是我们使用的sqlSession -->
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-        <!-- 只能使用构造器注入sqlSessionFactory，因为他没有set方法 -->
+        <!-- 只能使用构造器注入sqlSessionFactory，因为他没有set方法，有set方法就可以用<property>了 -->
         <constructor-arg index="0" ref="sqlSessionFactory"/>
-    </bean>
-
-    <!-- 将bean id为sqlSession的类注入sqlSession -->
-    <bean id="userMapper" class="com.odas.mapper.UserMapperImpl">
-        <property name="sqlSession" ref="sqlSession"/>
     </bean>
 
 </beans>

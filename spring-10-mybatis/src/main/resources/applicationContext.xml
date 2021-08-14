@@ -10,4 +10,10 @@
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
 
+    <bean id="userMapper2" class="com.odas.mapper.UserMapperImpl2">
+        <!-- 这里其实就简化了sqlsession那一步，就是将这一步合并到实现类里面了而已 -->
+        <!-- 下面的这个property就是调用SqlSessionDaoSupport的setSqlSessionFactory方法 -->
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
 </beans>

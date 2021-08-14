@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 可以在这里留至少2项，第一项是别名，第二项是设置 -->
+    <typeAliases>
+        <package name="com.odas.pojo"/>
+    </typeAliases>
+
+    <!-- 设置推荐放这里 -->
+<!--    <settings>-->
+<!--        <setting name="" value=""/>-->
+<!--    </settings>-->
+
+<!--    <environments default="development">-->
+<!--        <environment id="development">-->
+<!--            <transactionManager type="JDBC"/>-->
+<!--            <dataSource type="POOLED">-->
+<!--                <property name="driver" value="com.mysql.jdbc.Driver"/>-->
+<!--                <property name="url" value="jdbc:mysql://149.28.176.120:3306/spring?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>-->
+<!--                <property name="username" value="odas"/>-->
+<!--                <property name="password" value="123456"/>-->
+<!--            </dataSource>-->
+<!--        </environment>-->
+<!--    </environments>-->
+
+    <!-- 这里对应spring-dao.xml里的<property name="mapperLocations" value="classpath:com/odas/mapper/*.xml"/> -->
+<!--    <mappers>-->
+<!--        <package name="com.odas.mapper"/>-->
+<!--    </mappers>-->
+
+</configuration>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 这个spring-dao.xml只需要专注于注册数据库的bean就可以了，之后import到applicationContext.xml里 -->
+
+    <!--
+        DataSource: 使用Spring的数据源替换MyBatis的配置 c3p0 dpcp druid
+        我们这里使用spring提供的JDBC: org.springframework.jdbc.datasource.DriverManagerDataSource
+        也就是说，spring来管理数据源了
+    -->
+    <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://149.28.176.120:3306/spring?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="username" value="odas"/>
+        <property name="password" value="123456"/>
+    </bean>
+
+    <!-- sqlSessionFactory也是在这个文件里定义啦，这样之前写的那个Utils文件就不需要了 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="datasource"/>
+        <!-- 绑定MyBatis配置文件，即MyBatis的设置都可以在这里写，也就是说mybatis-config.xml里的配置都可以在这里完成 -->
+        <!-- 尽管mybatis-config.xml里的那些配置可以在这里完成，我们依然可以通过导入mybatis-config.xml文件的方式导入配置 -->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!-- mapper的定位也可以在这里定义哦 -->
+        <property name="mapperLocations" value="classpath:com/odas/mapper/*.xml"/>
+    </bean>
+
+    <!-- sqlSessionTemplate就是我们使用的sqlSession -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <!-- 只能使用构造器注入sqlSessionFactory，因为他没有set方法，有set方法就可以用<property>了 -->
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+</beans>

@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+    ">
 
     <!-- 这个spring-dao.xml只需要专注于注册数据库的bean就可以了，之后import到applicationContext.xml里 -->
 
@@ -32,5 +40,43 @@
         <!-- 只能使用构造器注入sqlSessionFactory，因为他没有set方法，有set方法就可以用<property>了 -->
         <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
+
+    <!-- 配置声明式事务 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg ref="datasource"/>
+    </bean>
+
+    <!-- 结合AOP实现事务的织入 -->
+    <!-- 配置事务的类
+        命名空间为:
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/beans/tx.xsd
+     -->
+    <!-- 下面这段话是基本上是固定的 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!-- method name表示给哪些方法配置事务 -->
+        <!--
+            配置事务的传播特性:
+            1. propagation, 一般默认就是REQUIRED，表示
+            支持当前事务，如果当前没有事务，就新建一个事务，这是最常见的选择
+            2. read-only: 只读，设定为true了后，就不能进行增删改操作了，一般用于查询方法
+         -->
+        <tx:attributes>
+            <tx:method name="add" propagation="REQUIRED"/>
+            <tx:method name="delete"/>
+            <tx:method name="update"/>
+
+            <tx:method name="query" read-only="true"/>
+            <!-- 如果是 * ，则表示所有方法 -->
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <!-- 配置事务切入 -->
+        <aop:pointcut id="txPointCut" expression="execution(* com.odas.mapper.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+    </aop:config>
 
 </beans>

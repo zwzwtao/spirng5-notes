@@ -51,7 +51,7 @@
         命名空间为:
         xmlns:tx="http://www.springframework.org/schema/tx"
         http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/beans/tx.xsd
+        http://www.springframework.org/schema/tx/spring-tx.xsd
      -->
     <!-- 下面这段话是基本上是固定的 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">

@@ -20,8 +20,8 @@
     -->
     <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://149.28.176.120:3306/spring?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
-        <property name="username" value="odas"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/spring?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="username" value="admin"/>
         <property name="password" value="123456"/>
     </bean>
 
